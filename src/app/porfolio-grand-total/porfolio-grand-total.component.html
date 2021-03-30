@@ -1,0 +1,52 @@
+<div class="list row">
+  
+  <h4>Grand Total</h4>
+  <table class="table table-striped">
+    <!-- <th *ngFor = "let column of headers"> -->
+      <thead>
+        <tr  *ngIf = "totals.length < 3">
+            <th>
+            Loading...
+          </th>
+        </tr>
+        <tr  *ngIf = "totals.length > 3">
+          <th  *ngFor = "let column of headers">
+            {{column}}
+          </th>
+        </tr>
+      </thead>
+    <!-- </th> -->
+    <!-- <span id="category_message" style = "display: none;"><h3 style = "color: blue;">Wait ...</h3></span> -->
+      <tbody *ngIf = "totals.length > 3">
+        <tr *ngFor = "let total of totals">
+          <td>
+            {{total.name}}
+          </td>
+          <td>
+            {{(total.totalCost) | number:'1.0-0':'en-US'}}
+          </td>
+          <td>
+            {{total.totalCurrentValue | number:'1.0-0':'en-US'}}
+          </td>
+          <td>
+            {{total.totalReturn | number:'1.0-0':'en-US'}}
+          </td>
+          <td>
+            {{total.percent | number:'1.0-1':'en-US'}}
+          </td>
+        </tr>  
+        <tr>
+          <td></td>
+          <td>{{totalCost | number:'1.0-0':'en-US'}}</td>
+          <td>{{totalCurrentValue | number:'1.0-0':'en-US'}}</td>
+          <td>{{totalReturn | number:'1.0-0':'en-US'}}</td>
+          <td>{{percent | number:'1.0-1':'en-US'}}</td>
+        </tr>  
+      </tbody>    
+  </table>
+</div>
+
+<!-- <app-portfolio-share-summary></app-portfolio-share-summary>
+<app-portfolio-sharekhan-summary></app-portfolio-sharekhan-summary>
+<app-portfolio-summary></app-portfolio-summary>
+<app-portfolio-sidvin-summary></app-portfolio-sidvin-summary> -->

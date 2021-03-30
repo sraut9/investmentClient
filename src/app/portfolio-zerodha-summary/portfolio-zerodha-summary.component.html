@@ -1,0 +1,142 @@
+<h2 class="text-center">Portfolio Tracker</h2>
+
+<!-- <app-porfolio-grand-total></app-porfolio-grand-total> -->
+
+<div class="list row">
+  <h4>Zerodha-MF</h4>
+</div>
+
+<div class="list row">
+      <div *ngIf="isFetching">
+        <h5>Loading...</h5>
+        <br>
+      </div>
+</div>
+  <div *ngIf="!isFetching" class="list row">
+  <table class="table table-striped">
+    <!-- <th *ngFor = "let column of headers"> -->
+      <thead>
+        <tr>
+          <th  *ngFor = "let column of headers">
+            {{column}}
+          </th>
+          <!-- <th>Current NAV/Price</th> -->
+        </tr>
+      </thead>
+    <!-- </th> -->
+    <!-- <span id="category_message" style = "display: none;"><h3 style = "color: blue;">Wait ...</h3></span> -->
+      <tbody>
+        <tr *ngFor = "let portfolio of portfolios">
+          <td>
+            {{portfolio.name}}
+          </td>
+          <td>
+            {{portfolio.type}}
+          </td>
+          <td>
+            {{portfolio.invested_nav_price}}
+          </td>
+          <td>
+            {{(portfolio.last_nav_price) | number:'1.0-1':'en-US'}}
+          </td>
+          <td>
+            {{portfolio.unit_no_of_shares}}
+          </td>
+          <td>
+            {{(portfolio.invested_nav_price * portfolio.unit_no_of_shares) | number:'1.0-0':'en-US'}}
+          </td>
+          <td>
+            {{(portfolio.last_nav_price * portfolio.unit_no_of_shares) | number:'1.0-0':'en-US'}}
+          </td>
+          <td>
+            {{((portfolio.last_nav_price-portfolio.invested_nav_price) * portfolio.unit_no_of_shares) | number:'1.0-0':'en-US'}}
+          </td>
+          <td>
+            {{((portfolio.last_nav_price-portfolio.invested_nav_price) / portfolio.invested_nav_price *100) | number:'1.0-1':'en-US'}}
+          </td>
+        </tr>  
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{totalCost | number:'1.0-0':'en-US'}}</td>
+          <td>{{totalCurrentValue | number:'1.0-0':'en-US'}}</td>
+          <td>{{totalReturn | number:'1.0-0':'en-US'}}</td>
+          <td>{{percent | number:'1.0-1':'en-US'}}</td>
+        </tr>  
+      </tbody>    
+  </table>
+  </div>
+<!--
+  <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by name"
+          [(ngModel)]="name"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchName()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Portfolios List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let portfolio of portfolios; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActivePortfolio(portfolio, i)"
+        >
+          {{ portfolio.name }}
+        </li>
+      </ul>
+
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllPortfolios()">
+        Remove All
+      </button>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentPortfolios">
+        <h4>portfolio</h4>
+        <div>
+          <label><strong>Name:</strong></label> {{ currentPortfolios.name }}
+        </div>
+        <div>
+          <label><strong>Type:</strong></label>
+          {{ currentPortfolios.type }}
+        </div>
+        <div>
+          <label><strong>Invested NAV or Price:</strong></label>
+          {{ currentPortfolios.invested_nav_price }}
+        </div>
+        <div>
+          <label><strong>Unit or No of Shares:</strong></label>
+          {{ currentPortfolios.unit_no_of_shares }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/portfolios/{{ currentPortfolios.id }}">
+          Edit
+        </a>
+      </div>
+  
+      <div *ngIf="!currentPortfolios">
+        <br />
+        <p>Please click on a portfolio...</p>
+      </div>
+    </div>
+-->
+  <!-- <app-portfolio-sidvin-summary></app-portfolio-sidvin-summary>
+  <app-portfolio-sharekhan-summary></app-portfolio-sharekhan-summary>
+  <app-portfolio-share-summary></app-portfolio-share-summary> -->

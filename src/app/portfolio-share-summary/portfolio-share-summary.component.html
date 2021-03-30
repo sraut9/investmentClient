@@ -1,0 +1,56 @@
+<h4>Zerodha-Share</h4>
+<div class="list row">
+    <div *ngIf="isFetching">
+      Loading...
+    </div>
+
+    <div *ngIf="!isFetching">
+      <table class="table table-striped">
+      <th class="thead-dark" *ngFor = "let column of headers">
+        {{column}}
+      </th>
+      <span id="category_message" style = "display: none;"><h3 style = "color: blue;">Wait ...</h3></span>
+  
+      <tr *ngFor = "let portfolio of portfolios">
+        <td>
+          {{portfolio.name}}
+        </td>
+        <td>
+          {{portfolio.type}}
+        </td>
+        <td>
+          {{portfolio.invested_nav_price}}
+        </td>
+        <td>
+          {{(portfolio.last_nav_price) | number:'1.0-1':'en-US'}}
+        </td>
+        <td>
+          {{portfolio.unit_no_of_shares}}
+        </td>
+        <td>
+          {{(portfolio.invested_nav_price * portfolio.unit_no_of_shares) | number:'1.0-0':'en-US'}}
+        </td>
+        <td>
+          {{(portfolio.last_nav_price * portfolio.unit_no_of_shares) | number:'1.0-0':'en-US'}}
+        </td>
+        <td>
+          {{((portfolio.last_nav_price-portfolio.invested_nav_price) * portfolio.unit_no_of_shares) | number:'1.0-0':'en-US'}}
+        </td>
+        <td>
+          {{((portfolio.last_nav_price-portfolio.invested_nav_price) / portfolio.invested_nav_price *100) | number:'1.0-1':'en-US'}}
+        </td>
+      </tr>  
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{totalCost | number:'1.0-0':'en-US'}}</td>
+        <td>{{totalCurrentValue | number:'1.0-0':'en-US'}}</td>
+        <td>{{totalReturn | number:'1.0-0':'en-US'}}</td>
+        <td>{{percent | number:'1.0-1':'en-US'}}</td>
+      </tr>      
+    </table>
+    </div>
+</div>
